@@ -3,100 +3,117 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Hash Generator</title>
+    <title>Hash Generator with Algorithm Selector</title>
     <style>
-
+        /* General Body Styling */
+        *{
+            background-color: #000;
+            color: #00ff91;
+        }
         body {
-            font-family: Arial, sans-serif;
-            text-align: center;
-            margin: 50px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            padding: 0px;
+            margin: 0px;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         }
-        input, select, button {
+        .container{
+            width: 100%;
+            height: 100%;
+            display: flex;
+            min-width: 300px;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+        }
+        .blow{
+            /* background-color: lime; */
+            width: 100%;
+            height: 100%;
+            display: flex;
+            max-width: 400px;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+        }
+        .inner{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            width: 100%;
+        }
+        input[type="text"], select {
+            width: 90%;
+            padding: 12px 15px;
+            margin: 10px 0;
+            border: 1px solid #aaa;
+            border-radius: 5px;
+            box-sizing: border-box;
+        }
+        input[type="text"]:focus, select:focus {
+            outline: 2px solid #00ff91;
+            box-shadow: 0 0 10px #00ff91;
+        }
+        select option {
+            color: #00ff91;
+            text-transform: uppercase;
+        }
+        .hash-output{
+            width: 85%;
+            border: 1px solid;
+            border-radius: 10px;
             padding: 10px;
-            margin: 10px;
-            font-size: 16px;
-            
+            text-align: center;
+            align-items: center;
+            font-size: .8rem;
         }
-        .result {
+        i{
+            color: crimson;
+            font-size: 1rem;
+        }
+        .footer{
             margin-top: 20px;
-            font-size: 18px;
-            font-weight: bold;
-            color: #333;
+            font-size: 12px;
+            color: #ccc;
         }
-        legend {
-            background-color: rgb(0, 42, 255);
-            color: white;
-            padding: 5px 10px;
-        
-        }
-
-        fieldset {
-            background-color: #eeeeee;
-            
-        }
-
-        input {
-            margin: 20px;
-            padding: 7px;
-        }
-        
-
-      
-
     </style>
 </head>
 <body>
-    <h1>
-        <b>Plaintext To Hash Generator</b></h1>
-    <br>
-    <br>
-    <fieldset>
-        <legend>Hash Generator</legend>
-        <br>
-        <br>
-        
-        <form method="post">
-            <label for="hash"> <b>PLAIN TEXT :</b></label>
-            <br>
-            <br>
-            <input type="text" name="text" id="hash" placeholder="Enter text" required>
-            <br>
-            <br>
-            <label for="hashalgo"> <b>CHOOSE HASH ALGORITHM :</b></label>
-            <br>
-            <br>
-            <select name="algorithm" id="hashalgo" required>
-                <option value="md5">MD5</option>
-                <option value="sha256">SHA-256</option>
-                <option value="sha1">sha1</option>
-                <option value="sha384">SHA-384</option>
-                <option value="sha512">SHA-512</option>
-                <option value="sha3_512">sha3_512</option>
-                <option value="blake2s">blake2s</option>
-                <option value="sha224">sha224</option>
-                <option value="shake_128">shake_128</option>
-                <option value="sha3_256">sha3_256</option>
-                <option value="blake2b">blake2b</option>
-                <option value="sha3_384">sha3_384</option>
-                <option value="sha3_224">sha3_224</option>
-            </select>
-    
-            <br>
-            <br>
-            <button  style=
-            "background-color: rgb(0, 42, 255); 
-            color: white;" onclick="colorFn(this)"type="submit"> <b>Generate Hash </b></button>
-        </form>
-        <br>
-        
+<div class="container">
+    <div class="blow">
+        <h1>Hash Generator</h1>
+    <div class="inner">
+        <input type="text" name="text" id="hash" required placeholder="Enter text to hash" />
+          <select onchange="colorFn(this)" name="algorithm" id="hashalgo" class="select-algorithm" required>
+              <option value="md5">MD5</option>
+              <option value="sha256">SHA-256</option>
+              <option value="sha1">sha1</option>
+              <option value="sha384">SHA-384</option>
+              <option value="sha512">SHA-512</option>
+              <option value="sha3_512">sha3_512</option>
+              <option value="blake2s">blake2s</option>
+              <option value="sha224">sha224</option>
+              <option value="shake_128">shake_128</option>
+              <option value="sha3_256">sha3_256</option>
+              <option value="blake2b">blake2b</option>
+              <option value="sha3_384">sha3_384</option>
+              <option value="sha3_224">sha3_224</option>
+        </select>
+    </div>
+    <!-- Placeholder for Hash Output -->
+
+  <br>
+
         {% if hash_result %}
-        <div class="result">
-            <p style="color: blue;"><strong>Hash For Given Text:</strong> {{ hash_result }}</p>
+         <div class="hash-output" id="hashOutput">Your hash will appear here... <br>
+            <i> {{ hash_result }}</i>
         </div>
         {% endif %}
-    
-        
-    </fieldset>
-    
+    <div class="footer">Copyright by Nikhil</div>
+    </div>
+</div>
 </body>
 </html>

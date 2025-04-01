@@ -45,15 +45,28 @@
             flex-direction: column;
             width: 100%;
         }
-        input[type="text"], select {
+        input[type="text"], select, button {
             width: 90%;
             padding: 12px 15px;
             margin: 10px 0;
             border: 1px solid #aaa;
             border-radius: 5px;
             box-sizing: border-box;
+            transition: .2s;
         }
-        input[type="text"]:focus, select:focus {
+        button{
+            color: #000;
+            font-weight: 500;
+            font-size: 1.1rem;
+            letter-spacing: 2px;
+            font-family: serif;
+            background-color: #00ff91;
+        }
+        button:active{
+            color: #00ff91;
+            background-color: transparent;
+        }
+        input[type="text"]:focus, select:focus{
             outline: 2px solid #00ff91;
             box-shadow: 0 0 10px #00ff91;
         }
@@ -87,7 +100,7 @@
         <h1>Hash Generator</h1>
     <div class="inner">
         <input type="text" name="text" id="hash" required placeholder="Enter text to hash" />
-          <select onchange="colorFn(this)" name="algorithm" id="hashalgo" class="select-algorithm" required>
+          <select name="algorithm" id="hashalgo" class="select-algorithm" required>
               <option value="md5">MD5</option>
               <option value="sha256">SHA-256</option>
               <option value="sha1">sha1</option>
@@ -102,11 +115,9 @@
               <option value="sha3_384">sha3_384</option>
               <option value="sha3_224">sha3_224</option>
         </select>
+        <button onclick="colorFn(this)">GENERATE</button>
     </div>
-    <!-- Placeholder for Hash Output -->
-
   <br>
-
          <div class="hash-output" id="hashOutput">Your hash will appear here... <br>
             {% if hash_result %}
             <i> {{ hash_result }}</i>

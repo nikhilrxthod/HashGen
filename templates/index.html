@@ -5,98 +5,124 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Hash Generator</title>
     <style>
-
+        *{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
         body {
-            font-family: Arial, sans-serif;
+            font-family: 'Arial', sans-serif;
+            background: #000;
+            color: #fff;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+        .container {
+            background: #1a1a1a;
+            border-radius: 12px;
+            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.5);
+            padding: 25px;
+            width: 90%;
+            max-width: 400px;
             text-align: center;
-            margin: 50px;
+        }
+        h1 {
+            font-size: 2rem;
+            margin-bottom: 20px;
+            color: #fff;
+            border-bottom: 2px solid #444;
+            padding-bottom: 10px;
+        }
+        label {
+            font-size: 0.9rem;
+            margin-bottom: 5px;
+            display: block;
+            text-align: left;
+            color: #ccc;
+        }
+        form{
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
         }
         input, select, button {
-            padding: 10px;
-            margin: 10px;
-            font-size: 16px;
-            
+            width: 100%;
+            padding: 12px;
+            margin: 10px 0;
+            font-size: 1rem;
+            border: 2px solid #32cd32; /* Light green border */
+            border-radius: 8px;
+            background: #333;
+            color: #fff;
+            transition: border-color 0.3s ease, box-shadow 0.3s ease;
+        }
+        input:focus, select:focus {
+            border-color: #00ff7f; /* Brighter green on focus */
+            box-shadow: 0 0 8px #00ff7f;
+            outline: none;
+        }
+        input::placeholder {
+            color: #888;
+        }
+        button {
+            background: linear-gradient(45deg, #32cd32, #00ff7f); /* Cool gradient */
+            color: #fff;
+            border: none;
+            cursor: pointer;
+            transition: background 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
+            border-radius: 8px;
+        }
+        button:hover {
+            background: linear-gradient(45deg, #00ff7f, #32cd32);
+            transform: scale(1.05);
+            box-shadow: 0 4px 15px rgba(0, 255, 127, 0.5);
         }
         .result {
             margin-top: 20px;
-            font-size: 18px;
-            font-weight: bold;
-            color: #333;
+            font-size: 1rem;
+            color: #00ffcc;
+            word-wrap: break-word;
+            background: #222;
+            padding: 10px;
+            border-radius: 8px;
+            border: 1px solid #444;
         }
-        legend {
-            background-color: rgb(0, 42, 255);
-            color: white;
-            padding: 5px 10px;
-        
-        }
-
-        fieldset {
-            background-color: #eeeeee;
-            
-        }
-
-        input {
-            margin: 20px;
-            padding: 7px;
-        }
-        
-
-      
-
     </style>
 </head>
 <body>
-    <h1>
-        <b>Plaintext To Hash Generator</b></h1>
-    <br>
-    <br>
-    <fieldset>
-        <legend>Hash Generator</legend>
-        <br>
-        <br>
-        
+    <div class="container">
+        <h1>Hash Generator</h1>
         <form method="post">
-            <label for="hash"> <b>PLAIN TEXT :</b></label>
-            <br>
-            <br>
+            <label for="hash">Plain Text:</label>
             <input type="text" name="text" id="hash" placeholder="Enter text" required>
-            <br>
-            <br>
-            <label for="hashalgo"> <b>CHOOSE HASH ALGORITHM :</b></label>
-            <br>
-            <br>
+            <label for="hashalgo">Choose Hash Algorithm:</label>
             <select name="algorithm" id="hashalgo" required>
                 <option value="md5">MD5</option>
                 <option value="sha256">SHA-256</option>
-                <option value="sha1">sha1</option>
+                <option value="sha1">SHA-1</option>
                 <option value="sha384">SHA-384</option>
                 <option value="sha512">SHA-512</option>
-                <option value="sha3_512">sha3_512</option>
-                <option value="blake2s">blake2s</option>
-                <option value="sha224">sha224</option>
-                <option value="shake_128">shake_128</option>
-                <option value="sha3_256">sha3_256</option>
-                <option value="blake2b">blake2b</option>
-                <option value="sha3_384">sha3_384</option>
-                <option value="sha3_224">sha3_224</option>
+                <option value="sha3_512">SHA3-512</option>
+                <option value="blake2s">BLAKE2s</option>
+                <option value="sha224">SHA-224</option>
+                <option value="shake_128">SHAKE-128</option>
+                <option value="sha3_256">SHA3-256</option>
+                <option value="blake2b">BLAKE2b</option>
+                <option value="sha3_384">SHA3-384</option>
+                <option value="sha3_224">SHA3-224</option>
             </select>
-    
-            <br>
-            <br>
-            <button  style=
-            "background-color: rgb(0, 42, 255); 
-            color: white;" onclick="colorFn(this)"type="submit"> <b>Generate Hash </b></button>
+            <button type="submit">Generate Hash</button>
         </form>
-        <br>
-        
         {% if hash_result %}
         <div class="result">
-            <p style="color: blue;"><strong>Hash For Given Text:</strong> {{ hash_result }}</p>
+            <p><strong>Hash Result:</strong> {{ hash_result }}</p>
         </div>
         {% endif %}
-    
-        
-    </fieldset>
-    
+    </div>
 </body>
 </html>
